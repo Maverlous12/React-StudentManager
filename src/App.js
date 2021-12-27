@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './shared/Header';
+import Footer from './shared/Footer.js';
+import Register from './components/Register';
+import { useState } from 'react';
 
 function App() {
+  const exp = {
+    id: Math.floor(Math.random() * 100),
+    name: 'le duc tho22',
+    gmail: 'quang1922@gmail.com',
+  };
+  let [title, setTitle] = useState('duong anh');
+  let [value, setValue] = useState('duong anh');
+  const [users, setUser] = useState([
+    {
+      id: Math.floor(Math.random() * 100),
+      name: 'le duc tho',
+      gmail: 'quang19@gmail.com',
+    },
+    {
+      id: Math.floor(Math.random() * 100),
+      name: 'hoang quoc viet',
+      gmail: 'hoang23@gmail.com',
+    },
+    {
+      id: Math.floor(Math.random() * 100),
+      name: 'le cat trong ly',
+      gmail: 'lyquangdieu@gmail.com',
+    },
+  ]);
+  const handleChangetitle = (e) => {
+    setValue(e.target.value);
+  };
+  const handleCheckEvent = () => {
+    setUser(...users, exp);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+
+      <Register />
+
+      {users.map((user) => {
+        return <div key={user.id}>{JSON.stringify(user)}</div>;
+      })}
+
+      <input type="text" value={value} onChange={(e) => handleChangetitle(e)} />
+      <button onClick={() => handleCheckEvent()}>Change title</button>
+      <h1>{title}</h1>
+      <Footer />
     </div>
   );
 }
