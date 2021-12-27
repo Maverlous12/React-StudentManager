@@ -1,6 +1,7 @@
 import './Register.scss';
 
-function Register() {
+function Register(props) {
+  console.log(props.setevent);
   return (
     <>
       <form action="/action_page.php">
